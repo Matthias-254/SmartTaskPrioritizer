@@ -10,6 +10,8 @@
 <div class="container py-4">
     <h1 class="mb-4">Smart Task Prioritizer</h1>
 
+    <a class="btn btn-primary mb-3" th:href="@{/tasks/new}">New Task</a>
+
     <p class="text-muted">This is your current task list, ordered by priority.</p>
 
     <table class="table table-striped" th:if="${!#lists.isEmpty(tasks)}">

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Task</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <h1 class="mb-4">New Task</h1>
+
+    <form th:action="@{/tasks}" th:object="${task}" method="post" class="col-6">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input class="form-control" th:field="*{title}">
+            <div class="text-danger" th:if="${#fields.hasErrors('title')}"
+                 th:errors="*{title}">Error</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Deadline</label>
+            <input class="form-control" type="date" th:field="*{deadline}">
+            <div class="text-danger" th:if="${#fields.hasErrors('deadline')}"
+                 th:errors="*{deadline}">Error</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input class="form-control" th:field="*{category}">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-secondary" th:href="@{/tasks}">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
