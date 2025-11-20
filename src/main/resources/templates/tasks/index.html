@@ -21,6 +21,7 @@
             <th>Deadline</th>
             <th>Priority</th>
             <th>Completed</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,13 @@
             <td th:text="${task.priorityScore}">10</td>
             <td>
                 <span th:text="${task.completed} ? 'Yes' : 'No'">No</span>
+            </td>
+            <td>
+                <form th:if="${!task.completed}"
+                      th:action="@{'/tasks/' + ${task.id} + '/complete'}"
+                      method="post">
+                    <button class="btn btn-sm btn-success" type="submit">Complete</button>
+                </form>
             </td>
         </tr>
         </tbody>

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/tasks")
@@ -43,6 +44,12 @@ public class TaskController {
             return "tasks/form";
         }
         service.save(task);
+        return "redirect:/tasks";
+    }
+
+    @PostMapping("/{id}/complete")
+    public String complete(@PathVariable Long id) {
+        service.complete(id);
         return "redirect:/tasks";
     }
 }
