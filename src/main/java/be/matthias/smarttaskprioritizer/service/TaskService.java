@@ -42,4 +42,8 @@ public class TaskService {
         task.setCompleted(true);
         save(task);
     }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }

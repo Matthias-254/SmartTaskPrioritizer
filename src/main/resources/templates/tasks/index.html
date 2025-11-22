@@ -32,13 +32,17 @@
             <td th:text="${task.deadline}">2025-01-01</td>
             <td th:text="${task.priorityScore}">10</td>
             <td>
-                <span th:text="${task.completed} ? 'Yes' : 'No'">No</span>
-            </td>
-            <td>
                 <form th:if="${!task.completed}"
                       th:action="@{'/tasks/' + ${task.id} + '/complete'}"
-                      method="post">
+                      method="post"
+                      style="display:inline-block">
                     <button class="btn btn-sm btn-success" type="submit">Complete</button>
+                </form>
+                <form th:action="@{'/tasks/' + ${task.id} + '/delete'}"
+                      method="post"
+                      style="display:inline-block"
+                      onsubmit="return confirm('Are you sure you want to delete this task?');">
+                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
                 </form>
             </td>
         </tr>

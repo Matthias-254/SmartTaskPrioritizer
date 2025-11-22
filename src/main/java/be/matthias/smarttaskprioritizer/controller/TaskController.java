@@ -58,4 +58,10 @@ public class TaskController {
         model.addAttribute("tasks", repo.findByCompletedTrueOrderByUpdatedAtDesc());
         return "tasks/completed";
     }
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        service.delete(id);
+        return "redirect:/tasks";
+    }
 }
