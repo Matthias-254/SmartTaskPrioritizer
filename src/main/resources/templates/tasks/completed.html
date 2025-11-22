@@ -10,7 +10,11 @@
 <div class="container py-4">
     <h1 class="mb-4">Completed Tasks</h1>
 
-    <a class="btn btn-secondary mb-3" th:href="@{/tasks}">Back</a>
+    <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}">Success message</div>
+
+    <a class="btn btn-outline-secondary mb-3" th:href="@{/tasks}">← Back to open tasks</a>
+
+    <p class="text-muted">These are tasks you have already completed.</p>
 
     <table class="table table-striped" th:if="${!#lists.isEmpty(tasks)}">
         <thead>

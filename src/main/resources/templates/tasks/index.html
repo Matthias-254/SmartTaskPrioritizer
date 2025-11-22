@@ -8,7 +8,12 @@
 </head>
 <body class="bg-light">
 <div class="container py-4">
-    <h1 class="mb-4">Smart Task Prioritizer</h1>
+    <h1 class="mb-2">Smart Task Prioritizer</h1>
+    <p class="text-muted mb-4">
+        You currently have
+        <span class="badge bg-primary" th:text="${#lists.size(tasks)}">0</span>
+        open tasks.
+    </p>
 
     <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}">Success message</div>
 
