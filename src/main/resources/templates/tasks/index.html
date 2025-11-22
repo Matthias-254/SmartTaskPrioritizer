@@ -10,6 +10,8 @@
 <div class="container py-4">
     <h1 class="mb-4">Smart Task Prioritizer</h1>
 
+    <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}">Success message</div>
+
     <a class="btn btn-primary mb-3" th:href="@{/tasks/new}">New Task</a>
     <a class="btn btn-outline-secondary mb-3" th:href="@{/tasks/completed}">View Completed Tasks</a>
 
