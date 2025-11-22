@@ -12,6 +12,8 @@
 
     <a class="btn btn-primary mb-3" th:href="@{/tasks/new}">New Task</a>
 
+    <a class="btn btn-outline-secondary mb-3" th:href="@{/tasks/completed}">View Completed Tasks</a>
+
     <p class="text-muted">This is your current task list, ordered by priority.</p>
 
     <table class="table table-striped" th:if="${!#lists.isEmpty(tasks)}">

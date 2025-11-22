@@ -52,4 +52,10 @@ public class TaskController {
         service.complete(id);
         return "redirect:/tasks";
     }
+
+    @GetMapping("/completed")
+    public String completed(Model model) {
+        model.addAttribute("tasks", repo.findByCompletedTrueOrderByUpdatedAtDesc());
+        return "tasks/completed";
+    }
 }
