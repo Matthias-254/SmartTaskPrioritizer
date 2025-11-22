@@ -27,7 +27,9 @@
         <tr th:each="task : ${tasks}">
             <td th:text="${task.title}">Title</td>
             <td th:text="${task.deadline}">2025-01-01</td>
-            <td th:text="${task.priorityScore}">10</td>
+            <td>
+                <span th:text="${task.priorityScore}" th:class="'badge ' + (${task.priorityScore} >= 8 ? 'bg-danger' : (${task.priorityScore} >= 5 ? 'bg-warning text-dark' : 'bg-success'))">10</span>
+            </td>
             <td>
                 <span th:text="${task.completed} ? 'Yes' : 'No'">No</span>
             </td>
