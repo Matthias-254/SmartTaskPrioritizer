@@ -1,5 +1,6 @@
 package be.matthias.smarttaskprioritizer.controller;
 
+import be.matthias.smarttaskprioritizer.exception.TaskNotFoundException;
 import be.matthias.smarttaskprioritizer.repository.TaskRepository;
 import be.matthias.smarttaskprioritizer.service.TaskService;
 import be.matthias.smarttaskprioritizer.model.Task;
@@ -83,7 +84,7 @@ public class TaskController {
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
-        Task task = repo.findById(id).orElseThrow();
+        Task task = repo.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
         model.addAttribute("task", task);
         return "tasks/form";
     }

@@ -1,5 +1,6 @@
 package be.matthias.smarttaskprioritizer.service;
 
+import be.matthias.smarttaskprioritizer.exception.TaskNotFoundException;
 import be.matthias.smarttaskprioritizer.model.Task;
 import be.matthias.smarttaskprioritizer.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class TaskService {
     }
 
     public void complete(Long id) {
-        Task task = repo.findById(id).orElseThrow();
+        Task task = repo.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
         task.setCompleted(true);
         save(task);
     }
