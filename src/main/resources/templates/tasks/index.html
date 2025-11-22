@@ -11,10 +11,7 @@
     <h1 class="mb-4">Smart Task Prioritizer</h1>
 
     <a class="btn btn-primary mb-3" th:href="@{/tasks/new}">New Task</a>
-
     <a class="btn btn-outline-secondary mb-3" th:href="@{/tasks/completed}">View Completed Tasks</a>
-
-    <p class="text-muted">This is your current task list, ordered by priority.</p>
 
     <table class="table table-striped" th:if="${!#lists.isEmpty(tasks)}">
         <thead>
@@ -32,12 +29,21 @@
             <td th:text="${task.deadline}">2025-01-01</td>
             <td th:text="${task.priorityScore}">10</td>
             <td>
+                <span th:text="${task.completed} ? 'Yes' : 'No'">No</span>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-warning mb-1"
+                   th:href="@{'/tasks/' + ${task.id} + '/edit'}">
+                    Edit
+                </a>
+
                 <form th:if="${!task.completed}"
                       th:action="@{'/tasks/' + ${task.id} + '/complete'}"
                       method="post"
                       style="display:inline-block">
                     <button class="btn btn-sm btn-success" type="submit">Complete</button>
                 </form>
+
                 <form th:action="@{'/tasks/' + ${task.id} + '/delete'}"
                       method="post"
                       style="display:inline-block"
@@ -49,9 +55,7 @@
         </tbody>
     </table>
 
-    <div th:if="${#lists.isEmpty(tasks)}">
-        <p class="text-muted">No tasks yet.</p>
-    </div>
+    <p th:if="${#lists.isEmpty(tasks)}" class="text-muted">No tasks yet.</p>
 </div>
 </body>
 </html>

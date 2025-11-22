@@ -8,9 +8,12 @@
 </head>
 <body class="bg-light">
 <div class="container py-4">
-    <h1 class="mb-4">New Task</h1>
+    <h1 class="mb-4" th:text="${task.id} == null ? 'New Task' : 'Edit Task'">New Task</h1>
 
     <form th:action="@{/tasks}" th:object="${task}" method="post" class="col-6">
+
+        <input type="hidden" th:field="*{id}"/>
+
         <div class="mb-3">
             <label class="form-label">Title</label>
             <input class="form-control" th:field="*{title}">

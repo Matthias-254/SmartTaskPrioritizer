@@ -64,4 +64,11 @@ public class TaskController {
         service.delete(id);
         return "redirect:/tasks";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Task task = repo.findById(id).orElseThrow();
+        model.addAttribute("task", task);
+        return "tasks/form";
+    }
 }
