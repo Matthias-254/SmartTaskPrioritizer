@@ -17,7 +17,7 @@ public class PriorityScheduler {
         this.service = service;
     }
 
-    // elke minuut (60000 ms) alle priorities herberekenen
+    //each minute (60000 ms) all priorities recalcutated
     @Scheduled(fixedRate = 60000)
     public void recalculatePriorities() {
         for (Task task : repo.findAll()) {

@@ -16,7 +16,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public String handleGenericException(Exception ex, Model model) {
-        // hier log je normaal de fout, voor nu tonen we alleen een nette pagina
         model.addAttribute("errorMessage", "An unexpected error occurred. Please try again later.");
         return "error/500";
     }
