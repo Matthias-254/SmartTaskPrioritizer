@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/tasks")
@@ -28,8 +30,30 @@ public class TaskController {
     }
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("tasks", repo.findByCompletedFalseOrderByPriorityScoreDesc());
+    public String list(@RequestParam(value = "sort", required = false) String sort,
+                       HttpSession session,
+                       Model model) {
+
+        if (sort != null) {
+            if (sort.equals("asc") || sort.equals("desc")) {
+                session.setAttribute("sortOrder", sort);
+            }
+        }
+
+        String sortOrder = (String) session.getAttribute("sortOrder");
+        if (sortOrder == null) {
+            sortOrder = "desc"; // default: hoogste prioriteit eerst
+            session.setAttribute("sortOrder", sortOrder);
+        }
+
+        if ("asc".equals(sortOrder)) {
+            model.addAttribute("tasks", repo.findByCompletedFalseOrderByPriorityScoreAsc());
+        } else {
+            model.addAttribute("tasks", repo.findByCompletedFalseOrderByPriorityScoreDesc());
+        }
+
+        model.addAttribute("currentSortOrder", sortOrder);
+
         return "tasks/index";
     }
 

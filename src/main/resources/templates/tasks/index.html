@@ -9,16 +9,27 @@
 <body class="bg-light">
 <div class="container py-4">
     <h1 class="mb-2">Smart Task Prioritizer</h1>
-    <p class="text-muted mb-4">
-        You currently have
-        <span class="badge bg-primary" th:text="${#lists.size(tasks)}">0</span>
-        open tasks.
-    </p>
+    <p class="text-muted mb-4">You currently have <span class="badge bg-primary" th:text="${#lists.size(tasks)}">0</span>open tasks.</p>
 
     <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}">Success message</div>
 
     <a class="btn btn-primary mb-3" th:href="@{/tasks/new}">New Task</a>
     <a class="btn btn-outline-secondary mb-3" th:href="@{/tasks/completed}">View Completed Tasks</a>
+
+    <p class="text-muted mb-4">Order the tasks:</p>
+
+    <div class="btn-group mb-3" role="group" aria-label="Sort order">
+        <a th:href="@{/tasks(sort='desc')}"
+           class="btn"
+           th:classappend="${currentSortOrder} == 'desc' ? ' btn-primary' : ' btn-outline-primary'">
+            High → Low
+        </a>
+        <a th:href="@{/tasks(sort='asc')}"
+           class="btn"
+           th:classappend="${currentSortOrder} == 'asc' ? ' btn-primary' : ' btn-outline-primary'">
+            Low → High
+        </a>
+    </div>
 
     <table class="table table-striped" th:if="${!#lists.isEmpty(tasks)}">
         <thead>
