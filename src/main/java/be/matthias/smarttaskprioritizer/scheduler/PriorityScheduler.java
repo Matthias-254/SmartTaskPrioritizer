@@ -17,8 +17,8 @@ public class PriorityScheduler {
         this.service = service;
     }
 
-    //each minute (60000 ms) all priorities recalcutated
-    @Scheduled(fixedRate = 60000)
+    //each time all priorities recalcutated
+    @Scheduled(fixedRate = 10000)
     public void recalculatePriorities() {
         for (Task task : repo.findAll()) {
             task.setPriorityScore(service.calculatePriority(task));

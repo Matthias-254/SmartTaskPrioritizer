@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.FutureOrPresent;
 
 @Entity
 public class Task {
@@ -16,10 +17,13 @@ public class Task {
     private String title;
 
     @NotNull(message = "Deadline is required")
-    @Future(message = "Deadline must be in the future")
+    @FutureOrPresent(message = "Deadline must be today or in the future")
     private LocalDate deadline;
 
     private String category;
+
+    @NotBlank(message = "Urgency is required")
+    private String urgency;
 
     private int priorityScore;
 
@@ -39,6 +43,9 @@ public class Task {
 
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+
+    public String getUrgency() { return urgency; }
+    public void setUrgency(String urgency) { this.urgency = urgency; }
 
     public int getPriorityScore() { return priorityScore; }
     public void setPriorityScore(int priorityScore) { this.priorityScore = priorityScore; }

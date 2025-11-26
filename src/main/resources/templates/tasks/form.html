@@ -29,8 +29,26 @@
         </div>
 
         <div class="mb-3">
+            <label class="form-label">Urgency</label>
+            <select class="form-select" th:field="*{urgency}">
+                <option value="" disabled>Select urgency</option>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('urgency')}"
+                 th:errors="*{urgency}">Error</div>
+        </div>
+
+        <div class="mb-3">
             <label class="form-label">Category</label>
-            <input class="form-control" th:field="*{category}">
+            <select class="form-select" th:field="*{category}">
+                <option value="">(Optional)</option>
+                <option value="SCHOOL">School</option>
+                <option value="WORK">Work</option>
+                <option value="PERSONAL">Personal</option>
+                <option value="HOBBY">Hobby</option>
+            </select>
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>

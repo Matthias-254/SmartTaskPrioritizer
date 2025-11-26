@@ -22,6 +22,8 @@
             <th>Title</th>
             <th>Deadline</th>
             <th>Priority</th>
+            <th>Category</th>
+            <th>Priority Score</th>
             <th>Completed At</th>
         </tr>
         </thead>
@@ -29,10 +31,12 @@
         <tr th:each="task : ${tasks}">
             <td th:text="${task.title}"></td>
             <td th:text="${task.deadline}"></td>
+            <td th:text="${task.urgency}">HIGH</td>
+            <td th:text="${task.category}">SCHOOL</td>
             <td>
                 <span th:text="${task.priorityScore}" th:class="'badge ' + (${task.priorityScore} >= 8 ? 'bg-danger' : (${task.priorityScore} >= 5 ? 'bg-warning text-dark' : 'bg-success'))">10</span>
             </td>
-            <td th:text="${task.updatedAt}"></td>
+            <td th:text="${#temporals.format(task.updatedAt, 'HH:mm dd/MM/yyyy')}"></td>
         </tr>
         </tbody>
     </table>
