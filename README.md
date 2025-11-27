@@ -77,6 +77,3 @@ https://www.baeldung.com/spring-scheduled-tasks
 
 ### Thymeleaf  
 https://www.thymeleaf.org/documentation.html
-
-### Bootstrap  
-https://getbootstrap.com/docs/
