@@ -42,6 +42,9 @@ Each task receives a raw score determined by multiple weighted factors, includin
 - Spring Scheduling  
 - H2 Database
 
+### Frontend
+- Thymeleaf 
+
 ## Running the Application
 
 ### Start the app
