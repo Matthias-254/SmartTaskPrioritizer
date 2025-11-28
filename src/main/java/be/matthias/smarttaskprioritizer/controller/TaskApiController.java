@@ -25,8 +25,7 @@ public class TaskApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        Task task = repo.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException(id));
+        Task task = repo.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
         return ResponseEntity.ok(task);
     }
 }

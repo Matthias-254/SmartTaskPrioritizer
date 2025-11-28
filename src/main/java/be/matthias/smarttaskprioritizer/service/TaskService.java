@@ -18,7 +18,6 @@ public class TaskService {
     }
 
     public int calculatePriority(Task task) {
-        // Veiligheid: als er geen deadline is, geven we de laagste basis-score
         int deadlineScore = computeDeadlineScore(task.getDeadline());
         int urgencyScore = computeUrgencyScore(task.getUrgency());
         int categoryScore = computeCategoryScore(task.getCategory());

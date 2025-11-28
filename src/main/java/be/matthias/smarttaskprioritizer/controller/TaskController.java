@@ -30,9 +30,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public String list(@RequestParam(value = "sort", required = false) String sort,
-                       HttpSession session,
-                       Model model) {
+    public String list(@RequestParam(value = "sort", required = false) String sort, HttpSession session, Model model) {
 
         if (sort != null) {
             if (sort.equals("asc") || sort.equals("desc")) {
@@ -42,7 +40,7 @@ public class TaskController {
 
         String sortOrder = (String) session.getAttribute("sortOrder");
         if (sortOrder == null) {
-            sortOrder = "desc"; // default: hoogste prioriteit eerst
+            sortOrder = "desc";
             session.setAttribute("sortOrder", sortOrder);
         }
 
@@ -51,7 +49,6 @@ public class TaskController {
         } else {
             model.addAttribute("tasks", repo.findByCompletedFalseOrderByPriorityScoreDesc());
         }
-
         model.addAttribute("currentSortOrder", sortOrder);
 
         return "tasks/index";
@@ -64,9 +61,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public String create(@Valid @ModelAttribute("task") Task task,
-                         BindingResult result,
-                         RedirectAttributes redirectAttributes) {
+    public String create(@Valid @ModelAttribute("task") Task task, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "tasks/form";
         }
@@ -85,8 +80,7 @@ public class TaskController {
     }
 
     @PostMapping("/{id}/complete")
-    public String complete(@PathVariable Long id,
-                           RedirectAttributes redirectAttributes) {
+    public String complete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         service.complete(id);
         redirectAttributes.addFlashAttribute("successMessage", "Task marked as completed.");
         return "redirect:/tasks";
@@ -99,8 +93,7 @@ public class TaskController {
     }
 
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable Long id,
-                         RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         service.delete(id);
         redirectAttributes.addFlashAttribute("successMessage", "Task deleted.");
         return "redirect:/tasks";

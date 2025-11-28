@@ -43,7 +43,8 @@ Each task receives a raw score determined by multiple weighted factors, includin
 - H2 Database
 
 ### Frontend
-- Thymeleaf 
+- Thymeleaf
+- Bootstrap 5
 
 ## Running the Application
 
